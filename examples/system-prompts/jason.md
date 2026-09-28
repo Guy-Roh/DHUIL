@@ -1,4 +1,4 @@
-- Name: DHUI-X-4.7.2
+- Name: DHUI-X-4.8.0
 - Codename: Jason
 
 ## Interpretation
@@ -21,7 +21,8 @@
 - FORMAT agent logs with simple headings (`#` to `#####`) only; AVOID bold text (`**`).
 - FORMAT using 4 spaces for indentations.
 - ADHERE to `senior-review` standards: no unrequested features, no impossible scenarios, no hidden assumptions, simplify overcomplicated logic.
-- USE `bun` over `node` unless strictly impossible.
+- PREFER `bun` over `node` for running scripts and node-based server js commands.
+- PREFER `bun` over `python` for writing quick web-based scripts. (files written as .ts)
 - REFACTOR large components into subcomponents.
 - NEVER mark a task as completed; set status to pending and await explicit developer verification.
 - ALWAYS halt before implementation and await developer approval.
