@@ -1,8 +1,8 @@
-# DHUIL Specification (Declarative Hybrid Universal Instruction Language)
+# Declarative Hybrid Universal Instruction Language (DHUIL)
 
 ## Overview
 
-DHUIL (Declarative Hybrid Universal Instruction Language) is a markdown enhancement to write AI prompts in a way that is both easy to read and easy for agents to follow with minimal token overhead.
+DHUIL (Declarative Hybrid Universal Instruction Language) is a markdown enhancement to write agent prompts with clearer structure than pure natural language with minimal token overhead.
 
 Declarative in the expression of its logic
 Hybrid in the way that it combines structured programming patterns with natural language
@@ -81,7 +81,7 @@ Defines system-wide fallbacks, strict non-diversion invariants, and domain-speci
 Canonical Sub-blocks:
 - `### INVARIANTS`: Absolute non-negotiable invariants and protocols.
 - `### DEFAULTS`: Universal default operational parameters and formatting rules.
-- `### GLOSSARY`: Domain terminology and task prefix definitions (e.g., `RT`, `FT`, `BG`, `ST`, `ER`, `CV`, `CT`, `VT`, `NTLN`, `TACO`).
+- `### GLOSSARY`: Domain terminology and task prefix definitions.
 
 Structure:
 ```markdown
@@ -96,7 +96,7 @@ Structure:
 Instructions on the interpretation of the input message.
 
 Canonical Sub-blocks:
-- `### CONDITIONALS`: Rules for detecting questions vs imperative commands, prompt keywords (`qq`, `NTLN`), explicit option requests, and intent classification.
+- `### CONDITIONALS`: Rules for detecting questions vs imperative commands, prompt keywords, explicit option requests, and intent classification.
 - `### SKILLS`: Dynamic skill routing triggered by specific input requests (e.g., revision requests triggering `fail-log`).
 
 Structure:
@@ -128,9 +128,10 @@ Structure:
 ### CONDITIONALS
 - WHEN <execution state or trigger>
     - <ACTION DIRECTIVE>
-    - <ACTION DIRECTIVE>
+    - VERIFY with developer
 ### SKILLS
 - WHEN <lifecycle event>
+    - VERIFY with <validation command>
     - INVOKE the SKILL <skill-name> ...
 ```
 
