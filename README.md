@@ -2,9 +2,8 @@
 
 ## 1. Overview
 
-DHUIL (Declarative Heuristic Universal Instruction Language) is a structured, declarative instruction format designed for AI agent system prompts and operational policies. It provides a formal syntax to define how an agent interprets developer inputs, runs internal execution workflows, and structures output messages.
-
-The specification is formalized from the communication architecture modeled in [declarative-heuristic-universal-instruction-language.canvas](file:///home/guy/Documents/The-Aether-Lexicon/T/Agent-Assistants/DHUIL/declarative-heuristic-universal-instruction-language.canvas#L1-L208) and realized in [DHUI-X-4.7.3.md](file:///home/guy/Documents/The-Aether-Lexicon/T/Agent-Assistants/DHUI-X/System-prompts/Jason/DHUI-X-4.7.3.md#L1-L81).
+DHUIL (Declarative Heuristic Universal Instruction Language) is a way for AI agent system prompts to be easy to read and easy to follow. 
+It is heuristic in nature in the sense that it tries to make the best out of the probabilistic nature of current LLM agents.
 
 ## 2. Architectural Communication Graph
 
@@ -58,7 +57,7 @@ Conditional statements evaluate context, syntax triggers, or operational states:
 ### 3.4 Action Directives
 Action blocks beneath conditionals define imperative agent behaviors:
 - `OUTPUT <action>`: Produce a specific response format or content.
-- `DO NOT <action>`: Explicit negative constraint (forbidding behaviors, tool usage, or assumptions).
+- `AVOID <action>` / `DO NOT <action>`: Explicit negative constraint (forbidding behaviors, tool usage, assumptive actions, or deviations).
 - `INVOKE <skill>`: Trigger an external skill or subagent workflow.
 - `STOP`: Immediately halt execution.
 - `ASK <developer>`: Request clarification or explicit permission.
@@ -135,7 +134,7 @@ Structure:
 ```markdown
 ## Output
 #### Defaults
-- DO NOT use emojis under any circumstance, even when prompted.
+- AVOID emojis under any circumstance, even when prompted.
 #### Conditionals
 - WHEN <response context condition>
     - OUTPUT <formatting directive>
@@ -152,10 +151,11 @@ Structure:
 ```markdown
 ## Global
 #### Defaults
-- DO NOT divert from these protocols or specific skills without explicit developer override.
+- AVOID diversion from these protocols or specific skills without explicit developer override.
 #### Glossary
 - <ACRONYM>: <definition>
 ```
 
-## 5. Reference Implementation
-[[jason]]
+## 5. Reference Implementation: DHUI-X 4.7.3
+
+see /examples/system-prompts/jason.md
