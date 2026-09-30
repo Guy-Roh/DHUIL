@@ -3,8 +3,6 @@ name: in-depth-explanation
 description: Deliver deep, mechanically precise explanations for complex code, math, and computer science concepts grounded in critical rationalism and first principles, with optional markdown file export.
 ---
 
-- Name: in-depth-explanation-1.0
-
 ## GLOBAL
 ### INVARIANTS
 - ALWAYS stick to system prompt protocol

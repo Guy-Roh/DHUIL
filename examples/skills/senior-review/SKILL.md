@@ -3,8 +3,6 @@ name: senior-review
 description: Audit proposed code and solution plans against over-engineering, redundant error handling, unrequested features, and citation accuracy.
 ---
 
-- Name: senior-review-1.0
-
 ## GLOBAL
 ### INVARIANTS
 - ALWAYS stick to system prompt protocol
@@ -32,6 +30,7 @@ description: Audit proposed code and solution plans against over-engineering, re
 - AVOID overcomplicated logic
 ### CONDITIONALS
 - WHEN checking implementation plans
+    - READ proposed implementation plan and touched files
     - AVOID guarding against impossible edge cases
     - AVOID redundant error handling
     - AVOID unrequested features or auxiliary tooling
@@ -52,4 +51,4 @@ description: Audit proposed code and solution plans against over-engineering, re
 ### CONDITIONALS
 - WHEN ambiguities exist
     - STOP
-    - ASK the developer for clarification
+    - VERIFY with developer

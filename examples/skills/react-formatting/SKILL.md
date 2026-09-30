@@ -3,8 +3,6 @@ name: react-formatting
 description: Guidelines and formatting standards for writing React, Next.js, TypeScript (.tsx), and Tailwind CSS frontend components.
 ---
 
-- Name: react-formatting-1.0
-
 ## GLOBAL
 ### DEFAULTS
 - FORMAT using 4 spaces for indentations

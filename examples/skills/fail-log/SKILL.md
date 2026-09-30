@@ -3,8 +3,6 @@ name: fail-log
 description: Record a structured post-mortem entry in the active task log and update current_tasks.md when an implementation attempt fails, a build breaks, or revisions are requested.
 ---
 
-- Name: fail-log-1.0
-
 ## GLOBAL
 ### INVARIANTS
 - ALWAYS stick to system prompt protocol
@@ -29,7 +27,7 @@ description: Record a structured post-mortem entry in the active task log and up
 - AVOID marking a failed or revised task as completed
 - INSTEAD set status to pending - awaiting developer feedback
 - STOP
-- AWAIT developer instructions
+- VERIFY with developer
 ### CONDITIONALS
 - WHEN formatting post-mortem entry
     - WRITE 6-line post-mortem containing:
@@ -41,6 +39,7 @@ description: Record a structured post-mortem entry in the active task log and up
         - Line 6: Next Proposed Attempt (precise next action)
 - WHEN locating active task log
     - SEARCH /agent/bugs, /agent/features, /agent/vault-tasks, or /agent/research for the task matching active scope
+    - READ active task log to extract context and previous attempt counts
 - WHEN synchronizing task register
     - UPDATE /agent/current_tasks.md under the active task ID with 1-sentence attempt summary
     - WRITE task status in /agent/current_tasks.md as pending - awaiting developer feedback
@@ -50,4 +49,4 @@ description: Record a structured post-mortem entry in the active task log and up
 - AVOID emojis
 - OUTPUT concise post-mortem summary
 - STOP
-- AWAIT developer direction
+- VERIFY with developer

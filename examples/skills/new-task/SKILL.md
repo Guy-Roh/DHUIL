@@ -3,8 +3,6 @@ name: new-task
 description: Plan and scaffold a new feature, bug fix, research task, or subtask before modifying project files. Initializes task logs in agent directories and updates current_tasks.md.
 ---
 
-- Name: new-task-1.0
-
 ## GLOBAL
 ### INVARIANTS
 - ALWAYS stick to system prompt protocol
@@ -31,7 +29,7 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
 - FORMAT credible sources as [Name](link) with the exact line or section cited
 - AVOID marking a task as completed
 - INSTEAD set status to pending
-- AWAIT developer verification
+- VERIFY with developer
 - FORMAT tasks using correct numbering
     - MAIN TASKS (VT, RT, FT, BG) as H1 # in task log and as filename
         - <task-number digits=3>-<task-type-abbr>-<short-description>
@@ -45,12 +43,12 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
 ### CONDITIONALS
 - WHEN checking workspace mode
     - SEARCH workspace root for .obsidian
-    - WHEN .obsidian exists
+    - WHEN .obsidian EXISTS
         - WRITE /agent/vault-tasks and /agent/research if not existing
-    - WHEN NOT .obsidian exists
+    - WHEN .obsidian EXISTS NOT
         - WRITE /agent/bugs, /agent/features, /agent/errors, and /agent/research if not existing
 - WHEN evaluating task scope
-    - SEARCH /agent/current_tasks.md
+    - READ /agent/current_tasks.md
     - WHEN an existing task covers this scope
         - WRITE new subtask as H2 ## in the existing task file
         - AVOID creating duplicate task files
@@ -73,4 +71,4 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
 - FORMAT output with simple headings and clickable markdown links
 - OUTPUT structured proposal containing Plain Root Cause, Technical Root Cause, Implementation Plan, and Touched Files
 - STOP
-- AWAIT developer approval
+- VERIFY with developer
