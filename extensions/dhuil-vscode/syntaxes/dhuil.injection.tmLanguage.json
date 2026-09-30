@@ -1,0 +1,73 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "DHUIL Injection",
+    "scopeName": "markdown.dhuil.injection",
+    "injectionSelector": "L:text.html.markdown",
+    "patterns": [
+        {
+            "include": "#header-metadata"
+        },
+        {
+            "include": "#block-titles"
+        },
+        {
+            "include": "#rule-classifications"
+        },
+        {
+            "include": "#conditionals"
+        },
+        {
+            "include": "#actions"
+        },
+        {
+            "include": "#policies"
+        }
+    ],
+    "repository": {
+        "header-metadata": {
+            "match": "^\\s*-\\s+(Name|Codename):\\s*(.*)$",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.metadata.dhuil"
+                },
+                "2": {
+                    "name": "string.unquoted.metadata.dhuil"
+                }
+            }
+        },
+        "block-titles": {
+            "match": "^(##)\\s+(GLOBAL|INTERPRETATION|EXECUTION|OUTPUT)\\b",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.heading.markdown"
+                },
+                "2": {
+                    "name": "entity.name.section.block-title.dhuil"
+                }
+            }
+        },
+        "rule-classifications": {
+            "match": "^(#{3,4})\\s+(INVARIANTS|DEFAULTS|CONDITIONALS|GLOSSARY|SKILLS)\\b",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.heading.markdown"
+                },
+                "2": {
+                    "name": "entity.name.section.rule-classification.dhuil"
+                }
+            }
+        },
+        "conditionals": {
+            "match": "\\b(WHEN|MEANING|CONTAINS|OR|AND|NOT|WITH)\\b",
+            "name": "keyword.control.conditional.dhuil"
+        },
+        "actions": {
+            "match": "\\b(OUTPUT|INVOKE|UPDATE|STOP|AWAIT|SEARCH|ASK|WRITE|FORMAT|EXECUTE|LOG)\\b",
+            "name": "entity.name.function.action.dhuil"
+        },
+        "policies": {
+            "match": "\\b(AVOID|ONLY|INSTEAD|ALWAYS|PREFER|OVER)\\b",
+            "name": "storage.modifier.policy.dhuil"
+        }
+    }
+}

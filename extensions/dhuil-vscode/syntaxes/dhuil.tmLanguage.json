@@ -1,0 +1,197 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "DHUIL",
+    "scopeName": "text.html.markdown.dhuil",
+    "patterns": [
+        {
+            "include": "#header-metadata"
+        },
+        {
+            "include": "#block-titles"
+        },
+        {
+            "include": "#rule-classifications"
+        },
+        {
+            "include": "#fenced-code-block"
+        },
+        {
+            "include": "#inline-code"
+        },
+        {
+            "include": "#headings"
+        },
+        {
+            "include": "#cap-tags"
+        },
+        {
+            "include": "#links"
+        },
+        {
+            "include": "#formatting"
+        },
+        {
+            "include": "#lists"
+        },
+        {
+            "include": "#html-comments"
+        }
+    ],
+    "repository": {
+        "header-metadata": {
+            "match": "^\\s*-\\s+(Name|Codename):\\s*(.*)$",
+            "captures": {
+                "1": {
+                    "name": "keyword.other.metadata.dhuil"
+                },
+                "2": {
+                    "name": "string.unquoted.metadata.dhuil"
+                }
+            }
+        },
+        "block-titles": {
+            "match": "^(##)\\s+(GLOBAL|INTERPRETATION|EXECUTION|OUTPUT)\\b",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.heading.markdown"
+                },
+                "2": {
+                    "name": "entity.name.section.block-title.dhuil"
+                }
+            }
+        },
+        "rule-classifications": {
+            "match": "^(#{3,4})\\s+(INVARIANTS|DEFAULTS|CONDITIONALS|GLOSSARY|SKILLS)\\b",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.heading.markdown"
+                },
+                "2": {
+                    "name": "entity.name.section.rule-classification.dhuil"
+                }
+            }
+        },
+        "cap-tags": {
+            "patterns": [
+                {
+                    "include": "#conditionals"
+                },
+                {
+                    "include": "#actions"
+                },
+                {
+                    "include": "#policies"
+                }
+            ]
+        },
+        "conditionals": {
+            "match": "\\b(WHEN|MEANING|CONTAINS|OR|AND|NOT|WITH)\\b",
+            "name": "keyword.control.conditional.dhuil"
+        },
+        "actions": {
+            "match": "\\b(OUTPUT|INVOKE|UPDATE|STOP|AWAIT|SEARCH|ASK|WRITE|FORMAT|EXECUTE|LOG)\\b",
+            "name": "entity.name.function.action.dhuil"
+        },
+        "policies": {
+            "match": "\\b(AVOID|ONLY|INSTEAD|ALWAYS|PREFER|OVER)\\b",
+            "name": "storage.modifier.policy.dhuil"
+        },
+        "headings": {
+            "patterns": [
+                {
+                    "match": "^(#{1,6})\\s+(.*)$",
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.heading.markdown"
+                        },
+                        "2": {
+                            "name": "markup.heading.markdown entity.name.section.markdown"
+                        }
+                    }
+                }
+            ]
+        },
+        "fenced-code-block": {
+            "begin": "^\\s*(`{3,}|~{3,})\\s*([a-zA-Z0-9_-]*)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.markdown"
+                },
+                "2": {
+                    "name": "fenced_code.block.language.markdown"
+                }
+            },
+            "end": "^\\s*(\\1)\\s*$",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.markdown"
+                }
+            },
+            "name": "markup.raw.block.markdown"
+        },
+        "inline-code": {
+            "match": "(`)([^`]+)(`)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.raw.markdown"
+                },
+                "2": {
+                    "name": "markup.raw.inline.markdown"
+                },
+                "3": {
+                    "name": "punctuation.definition.raw.markdown"
+                }
+            }
+        },
+        "links": {
+            "patterns": [
+                {
+                    "match": "(\\[)([^\\]]+)(\\])(\\()([^\\)]+)(\\))",
+                    "captures": {
+                        "1": { "name": "punctuation.definition.link.markdown" },
+                        "2": { "name": "string.other.link.title.markdown" },
+                        "3": { "name": "punctuation.definition.link.markdown" },
+                        "4": { "name": "punctuation.definition.metadata.markdown" },
+                        "5": { "name": "markup.underline.link.markdown" },
+                        "6": { "name": "punctuation.definition.metadata.markdown" }
+                    }
+                }
+            ]
+        },
+        "formatting": {
+            "patterns": [
+                {
+                    "match": "(\\*\\*|__)(.*?)\\1",
+                    "name": "markup.bold.markdown"
+                },
+                {
+                    "match": "(\\*|_)(.*?)\\1",
+                    "name": "markup.italic.markdown"
+                }
+            ]
+        },
+        "lists": {
+            "match": "^\\s*([-*+]|[0-9]+\\.)\\s+",
+            "captures": {
+                "1": {
+                    "name": "punctuation.definition.list.begin.markdown"
+                }
+            }
+        },
+        "html-comments": {
+            "begin": "<!--",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.begin.markdown"
+                }
+            },
+            "end": "-->",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.comment.end.markdown"
+                }
+            },
+            "name": "comment.block.html"
+        }
+    }
+}

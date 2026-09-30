@@ -1,0 +1,82 @@
+{
+    "name": "dhuil-vscode",
+    "displayName": "DHUIL Language Support",
+    "description": "Syntax highlighting and language support for DHUIL (Declarative Hybrid Universal Instruction Language)",
+    "version": "0.1.0",
+    "publisher": "dhuil",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "dhuil",
+                "aliases": [
+                    "DHUIL",
+                    "dhuil"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "dhuil",
+                "scopeName": "text.html.markdown.dhuil",
+                "path": "./syntaxes/dhuil.tmLanguage.json"
+            },
+            {
+                "scopeName": "markdown.dhuil.injection",
+                "path": "./syntaxes/dhuil.injection.tmLanguage.json",
+                "injectTo": [
+                    "text.html.markdown",
+                    "text.html.markdown.dhuil"
+                ]
+            }
+        ],
+        "configurationDefaults": {
+            "editor.tokenColorCustomizations": {
+                "textMateRules": [
+                    {
+                        "scope": "entity.name.section.block-title.dhuil",
+                        "settings": {
+                            "foreground": "#fa8181"
+                        }
+                    },
+                    {
+                        "scope": "entity.name.section.rule-classification.dhuil",
+                        "settings": {
+                            "foreground": "#ffe1b6"
+                        }
+                    },
+                    {
+                        "scope": "keyword.control.conditional.dhuil",
+                        "settings": {
+                            "foreground": "#daffbe"
+                        }
+                    },
+                    {
+                        "scope": "entity.name.function.action.dhuil",
+                        "settings": {
+                            "foreground": "#72b1b9"
+                        }
+                    },
+                    {
+                        "scope": "storage.modifier.policy.dhuil",
+                        "settings": {
+                            "foreground": "#FFAB91"
+                        }
+                    },
+                    {
+                        "scope": "keyword.other.metadata.dhuil",
+                        "settings": {
+                            "foreground": "#FFE082"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
