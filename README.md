@@ -2,7 +2,8 @@
 
 ## Overview
 
-DHUIL (Declarative Hybrid Universal Instruction Language) is a way to write AI prompts in a way that is both easy to read and easy for agents to follow.
+DHUIL (Declarative Hybrid Universal Instruction Language) is a markdown enhancement to write AI prompts in a way that is both easy to read and easy for agents to follow with minimal token overhead.
+
 Declarative in the expression of its logic
 Hybrid in the way that it combines structured programming patterns with natural language
 Universal by using model-agnostic declarative keywords
@@ -20,20 +21,20 @@ DHUIL allows explicit instructions governing each stage of this pipeline:
 - Header metadata: Key-value list at the root (`- Name: ...`, optional `- Codename: ...`). 
   - Skill files simply use the default YAML header.
 
-- Major functional blocks: Level 2 headings:
-	- GLOBAL
-	- INTERPRETATION
-	- EXECUTION
-	- OUTPUT
+- Major functional blocks: Level 2 headings (`## <BLOCK>`):
+    - `## GLOBAL`
+    - `## INTERPRETATION`
+    - `## EXECUTION`
+    - `## OUTPUT`
 
-- Rule classifications: Level 3 headings 
-	- INVARIANTS
-	- DEFAULTS
-	- CONDITIONALS
-	- GLOSSARY
-	- SKILLS
+- Rule classifications: Level 3 headings (`### <CLASSIFICATION>`):
+    - `### INVARIANTS`
+    - `### DEFAULTS`
+    - `### CONDITIONALS`
+    - `### GLOSSARY`
+    - `### SKILLS`
 
-All block titles and tags are written uppercase
+All block titles and classification headings are written uppercase.
 
 - Rules are written as bullet points and indented bullet points within for condition-action-policy rules
 - 4 spaces per indentation level
@@ -70,80 +71,81 @@ All block titles and tags are written uppercase
 - `PREFER <resource> OVER <resource>`: Explicit prioritization of tools, runtimes, languages, or approaches.
 
 ## The 4 Main Blocks
-### `## Interpretation`
-Instructions on the interpretation of the input message
 
-- `#### Conditionals`: Rules for detecting questions vs imperative commands, prompt keywords (`qq`), explicit option requests, and intent classification.
-- `##### Skills`: Dynamic skill routing triggered by specific input requests (e.g., revision requests triggering `fail-log`).
+### `## GLOBAL`
+Defines system-wide fallbacks, strict non-diversion invariants, and domain-specific acronym definitions utilized across logs, tasks, and conversations.
+
+Canonical Sub-blocks:
+- `### INVARIANTS`: Absolute non-negotiable invariants and protocols.
+- `### DEFAULTS`: Universal default operational parameters and formatting rules.
+- `### GLOSSARY`: Domain terminology and task prefix definitions (e.g., `RT`, `FT`, `BG`, `ST`, `ER`, `CV`, `CT`, `VT`, `NTLN`, `TACO`).
 
 Structure:
 ```markdown
-## Interpretation
-#### Conditionals
+## GLOBAL
+### INVARIANTS
+- ALWAYS stick to system prompt protocol
+### GLOSSARY
+- <ACRONYM>: <definition>
+```
+
+### `## INTERPRETATION`
+Instructions on the interpretation of the input message.
+
+Canonical Sub-blocks:
+- `### CONDITIONALS`: Rules for detecting questions vs imperative commands, prompt keywords (`qq`, `NTLN`), explicit option requests, and intent classification.
+- `### SKILLS`: Dynamic skill routing triggered by specific input requests (e.g., revision requests triggering `fail-log`).
+
+Structure:
+```markdown
+## INTERPRETATION
+### CONDITIONALS
 - WHEN <input condition>
     - <ACTION DIRECTIVE>
     - <POLICY DIRECTIVE>
-##### Skills
+### SKILLS
 - WHEN <input condition>
     - INVOKE the SKILL <skill-name> ...
 ```
 
-### `## Execution`
+### `## EXECUTION`
+Governs dynamic runtime behavior, task logging lifecycle, engineering defaults, and execution workflows.
 
 Canonical Sub-blocks:
-- `#### Defaults`: Static engineering and operational standards (indentation rules, senior review standards, runtime preferences, link formatting, approval halt policies).
-- `#### Conditionals`: Dynamic runtime behaviors (session init detection, uncertainty halts, API verification, documentation absence protocols, logging triggers).
-- `##### Skills`: Task scaffolding (`new-task`), post-mortem logging (`fail-log`), and test runners.
+- `### DEFAULTS`: Static engineering and operational standards (indentation rules, senior review standards, runtime preferences, link formatting, approval halt policies).
+- `### CONDITIONALS`: Dynamic runtime behaviors (session init detection, uncertainty halts, API verification, documentation absence protocols, logging triggers).
+- `### SKILLS`: Task scaffolding (`new-task`), post-mortem logging (`fail-log`), and test runners.
 
 Structure:
 ```markdown
-## Execution
-#### Defaults
+## EXECUTION
+### DEFAULTS
 - FORMAT ...
-- ADHERE ...
-- USE ...
-- NEVER ...
 - ALWAYS ...
-#### Conditionals
+### CONDITIONALS
 - WHEN <execution state or trigger>
     - <ACTION DIRECTIVE>
     - <ACTION DIRECTIVE>
-##### Skills
+### SKILLS
 - WHEN <lifecycle event>
     - INVOKE the SKILL <skill-name> ...
 ```
 
-### `## Output`
+### `## OUTPUT`
 Controls response synthesis and final message delivery back to the developer. Governs tone, language clarity, length bounds, domain term definitions, and visual constraints (e.g., emoji bans).
 
 Canonical Sub-blocks:
-- `#### Defaults`: Universal output constraints.
-- `#### Conditionals`: Dynamic response adaptations (e.g., inline definitions for niche terminology, concise explanation modes).
+- `### DEFAULTS`: Universal output constraints (e.g., emoji bans, formatting structure).
+- `### CONDITIONALS`: Dynamic response adaptations (e.g., inline definitions for niche terminology, concise explanation modes).
 
 Structure:
 ```markdown
-## Output
-#### Defaults
+## OUTPUT
+### DEFAULTS
 - AVOID emojis under any circumstance, even when prompted.
-#### Conditionals
+### CONDITIONALS
 - WHEN <response context condition>
     - OUTPUT <formatting directive>
-```
-
-### `## Global`
-Defines system-wide fallbacks, strict non-diversion invariants, and domain-specific acronym definitions utilized across logs, tasks, and conversations.
-
-Canonical Sub-blocks:
-- `#### Defaults`: Universal non-diversion and protocol enforcement rules.
-- `#### Glossary`: Domain terminology and task prefix definitions (e.g., `RT`, `FT`, `BG`, `ST`, `ER`, `CV`, `CT`, `VT`).
-
-Structure:
-```markdown
-## Global
-#### Defaults
-- AVOID diversion from these protocols or specific skills without explicit developer override.
-#### Glossary
-- <ACRONYM>: <definition>
 ```
 
 ## Reference Implementations & Examples
@@ -153,10 +155,10 @@ Structure:
 
 ### Skills
 - [session-init](examples/skills/session-init/SKILL.md): Session initialization and workspace mode detection.
-- [new-task](examples/skills/new-task/SKILL-dhuil.md): Task scaffolding and root-cause formulation.
+- [new-task](examples/skills/new-task/SKILL.md): Task scaffolding and root-cause formulation.
 - [fail-log](examples/skills/fail-log/SKILL.md): Post-mortem logging and error tracking.
-- [senior-review](examples/skills/senior-review/SKILL-dhuil.md): Code review and quality verification.
-- [system-troubleshoot](examples/skills/system-troubleshoot/SKILL-dhuil.md): System troubleshooting workflows.
+- [senior-review](examples/skills/senior-review/SKILL.md): Code review and quality verification.
+- [react-formatting](examples/skills/react-formatting/SKILL.md): React, TypeScript, and Tailwind CSS formatting standards.
 - [in-depth-explanation](examples/skills/in-depth-explanation/SKILL.md): Structured technical explanation skill.
 
 ## Tooling & Editor Support
