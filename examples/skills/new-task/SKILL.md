@@ -26,7 +26,7 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
 - FORMAT agent logs with simple headings (# to #####) only
 - AVOID bold text (**)
 - FORMAT using 4 spaces for indentations
-- FORMAT credible sources as [Name](link) with the exact line or section cited
+- FORMAT credible sources as `[Name](link)` with the exact line or section cited
 - AVOID marking a task as completed
 - INSTEAD set status to pending
 - VERIFY with developer

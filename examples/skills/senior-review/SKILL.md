@@ -21,7 +21,7 @@ description: Audit proposed code and solution plans against over-engineering, re
 ## EXECUTION
 ### DEFAULTS
 - FORMAT using 4 spaces for indentations
-- FORMAT credible sources as [Name](link) with the exact line or section cited
+- FORMAT credible sources as `[Name](link)` with the exact line or section cited
 - PREFER bun OVER node
 - PREFER easy to maintain subcomponents OVER large components
 - EXECUTE Senior Engineer Test: "Would a senior engineer say this is overcomplicated?"
