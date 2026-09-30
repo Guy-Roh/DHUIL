@@ -45,6 +45,7 @@ All block titles and classification headings are written uppercase.
 - `WHEN <condition>`: Primary trigger clause.
 - `MEANING <semantic_criteria>`: Clarification of the trigger's semantic meaning.
 - `CONTAINS <text/symbol>`: Substring or element matching condition.
+- `EXISTS <target>`: Check existence of a file, directory, variable, or state.
 - `OR <condition>`: Alternative trigger condition.
 - `AND <condition>`: Conjunctive trigger condition.
 - `NOT <condition>`: Negation condition.
@@ -57,17 +58,19 @@ All block titles and classification headings are written uppercase.
 - `STOP`: Immediately halt execution.
 - `AWAIT <condition/verification>`: Pause execution pending external event or approval.
 - `SEARCH <target>`: Search files, codebase, or official documentation.
+- `READ <target>`: Inspect or view specific files or content directly without searching.
 - `ASK <target>`: Request clarification or explicit permission.
-- `WRITE <target>`: Create or edit or text in files on disk.
+- `WRITE <target>`: Create or edit text or files on disk.
 - `FORMAT <target>`: Apply structural formatting.
 - `EXECUTE <command>`: Run a specific terminal command or script.
 - `LOG <target>`: Record reasoning, plans, or step-by-step notes.
+- `VERIFY <condition/target>`: Perform verification with developer or run validation checks (e.g. `VERIFY with developer`, `VERIFY with bun run build`).
 
 #### Policy
-- `ALWAYS`: explicit absolute invariant.
+- `ALWAYS`: Explicit absolute invariant.
 - `AVOID <action>`: Explicit negative constraint (forbidding behaviors, tool usage, assumptive actions, or deviations).
 - `ONLY <action/scope>`: Restrict permitted actions, tools, or scope.
-- `INSTEAD <action>`: Substitute an alternative action in place of a default or disallowed behavior.
+- `INSTEAD <action>`: Substitute an alternative action in place of a default or disallowed behavior (often paired as `AVOID <action> INSTEAD <action>`).
 - `PREFER <resource> OVER <resource>`: Explicit prioritization of tools, runtimes, languages, or approaches.
 
 ## The 4 Main Blocks
