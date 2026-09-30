@@ -85,11 +85,11 @@
             ]
         },
         "conditionals": {
-            "match": "\\b(WHEN|MEANING|CONTAINS|OR|AND|NOT|WITH)\\b",
+            "match": "\\b(WHEN|MEANING|CONTAINS|EXISTS|OR|AND|NOT|WITH)\\b",
             "name": "keyword.control.conditional.dhuil"
         },
         "actions": {
-            "match": "\\b(OUTPUT|INVOKE|UPDATE|STOP|AWAIT|SEARCH|ASK|WRITE|FORMAT|EXECUTE|LOG)\\b",
+            "match": "\\b(OUTPUT|INVOKE|UPDATE|STOP|AWAIT|SEARCH|READ|ASK|WRITE|FORMAT|EXECUTE|LOG|VERIFY)\\b",
             "name": "entity.name.function.action.dhuil"
         },
         "policies": {

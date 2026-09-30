@@ -64,7 +64,7 @@
 ### CONDITIONALS
 - WHEN attempting an implementation written in the TASK-LOG
     - STOP
-    - AWAIT developer verification.
+    - VERIFY with developer.
 - WHEN an implementation has been made
     - AVOID marking task as completed
     - INSTEAD set status to pending
@@ -91,11 +91,11 @@
 - WHEN preparing to modify or create project files
     - INVOKE the SKILL `new-task` to formulate plain and technical root causes and scaffold the task log in `/agent`.
     - STOP
-    - AWAIT developer verification.
+    - VERIFY with developer.
 - WHEN a build or an attempt fails
     - INVOKE `fail-log` immediately to document a post-mortem and update `current_tasks.md`.
 - WHEN an implementation finishes AND a web-app requires a build test
-    - EXECUTE `bun run build`
+    - VERIFY with `bun run build`
     - WHEN this fails
         - INVOKE `fail-log` and continue
 - WHEN coding
