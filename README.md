@@ -1,72 +1,73 @@
-# DHUIL Specification (Declarative Heuristic Universal Instruction Language)
+# DHUIL Specification (Declarative Hybrid Universal Instruction Language)
 
 ## Overview
 
-DHUIL (Declarative Heuristic Universal Instruction Language) is a way to write AI prompts in a way that is both easy to read and easy for agents to follow. 
-It is heuristic in nature in the sense that it tries to make the best out of the probabilistic nature of current LLM agents.
+DHUIL (Declarative Hybrid Universal Instruction Language) is a way to write AI prompts in a way that is both easy to read and easy for agents to follow.
+Declarative in the expression of its logic
+Hybrid in the way that it combines structured programming patterns with natural language
+Universal by using model-agnostic declarative keywords
 
 ## Architectural Communication Graph
-
-The DHUIL communication pipeline connects the developer and the agent through three core functional stages:
-
-```
-+---------------+     Input Message      +------------------+
-|   Developer   | ---------------------> |  Interpretation  |
-+---------------+                        +------------------+
-        ^                                          |
-        |                                          v
-        | Output Message (Response)      +------------------+
-        +------------------------------- |      Agent       |
-                                         +------------------+
-                                               |      ^
-                                      Workflow |      | Execution
-                                               v      |
-                                         +------------------+
-                                         |    Execution     |
-                                         |   / Workflow     |
-                                         +------------------+
-```
-
-DHUIL provides explicit instructions governing each stage of this graph:
-1. `Interpretation`: interpretation of the input messages
-2. `Execution` (or Workflow)
-3. `Output`: how messages back should be structured
-4. `Global`: Universal invariants, fallback protocols, and glossaries
-
-### Advantages of DHUIL
-- Easy to write and maintain within Obsidian or standard IDEs unlike XML-based markup for prompting
-- Minimal token usage with bullet points for individual rules
+DHUIL allows explicit instructions governing each stage of this pipeline:
+1. `GLOBAL`: Universal invariants, defaults, and glossaries
+2. `INTERPRETATION`: interpretation of the input messages
+3. `EXECUTION` (or Workflow)
+4. `OUTPUT`: how messages back should be structured
 
 ## Syntax Primitives & Formatting Rules
 
 ### Document Hierarchy
-- Header metadata: Key-value list at the root (`- Name: ...`, `- Codename: ...`).
-- Major functional blocks: Level 2 headings (`## Interpretation`, `## Execution`, `## Output`, `## Global`).
-- Rule classifications: Level 3 headings 
-	- `### Defaults`
-	- `### Conditionals`
-	- `### Glossary`
-- Sub-categories / extensions: Level 4 headings (`#### Skills`, `#### Tools`).
-- Rules are written as bullet points and indented bullet points within for condition-action-policy rules
-- All nested directives and conditional sub-actions must use exactly 4 spaces per indentation level.
+- Header metadata: Key-value list at the root (`- Name: ...`, optional `- Codename: ...`). 
+  - Skill files simply use the default YAML header.
 
-### Conditional Predicates
-Conditional statements evaluate context, syntax triggers, or operational states:
+- Major functional blocks: Level 2 headings:
+	- GLOBAL
+	- INTERPRETATION
+	- EXECUTION
+	- OUTPUT
+
+- Rule classifications: Level 3 headings 
+	- INVARIANTS
+	- DEFAULTS
+	- CONDITIONALS
+	- GLOSSARY
+	- SKILLS
+
+All block titles and tags are written uppercase
+
+- Rules are written as bullet points and indented bullet points within for condition-action-policy rules
+- 4 spaces per indentation level
+
+### CAP Tags
+
+#### Conditional
 - `WHEN <condition>`: Primary trigger clause.
 - `MEANING <semantic_criteria>`: Clarification of the trigger's semantic meaning.
+- `CONTAINS <text/symbol>`: Substring or element matching condition.
 - `OR <condition>`: Alternative trigger condition.
 - `AND <condition>`: Conjunctive trigger condition.
+- `NOT <condition>`: Negation condition.
+- `WITH <condition>`: Contextual qualifier or state condition.
 
-### Action Directives
-Action blocks beneath conditionals define imperative agent behaviors:
-- `OUTPUT <action>`: Produce a specific response format or content.
-- `AVOID <action>`: Explicit negative constraint (forbidding behaviors, tool usage, assumptive actions, or deviations).
+#### Action
+- `OUTPUT <action>`: Produce a specific response format, text, or content.
 - `INVOKE <skill>`: Trigger an external skill or subagent workflow.
+- `UPDATE <target>`: Modify an existing file, register, or state.
 - `STOP`: Immediately halt execution.
-- `ASK <developer>`: Request clarification or explicit permission.
-- `WRITE <target>`: Edit file on disk.
+- `AWAIT <condition/verification>`: Pause execution pending external event or approval.
+- `SEARCH <target>`: Search files, codebase, or official documentation.
+- `ASK <target>`: Request clarification or explicit permission.
+- `WRITE <target>`: Create or edit or text in files on disk.
 - `FORMAT <target>`: Apply structural formatting.
-- `PREFER <resource> OVER <resource>`: Prefer specific tools, runtimes, or methods.
+- `EXECUTE <command>`: Run a specific terminal command or script.
+- `LOG <target>`: Record reasoning, plans, or step-by-step notes.
+
+#### Policy
+- `ALWAYS`: explicit absolute invariant.
+- `AVOID <action>`: Explicit negative constraint (forbidding behaviors, tool usage, assumptive actions, or deviations).
+- `ONLY <action/scope>`: Restrict permitted actions, tools, or scope.
+- `INSTEAD <action>`: Substitute an alternative action in place of a default or disallowed behavior.
+- `PREFER <resource> OVER <resource>`: Explicit prioritization of tools, runtimes, languages, or approaches.
 
 ## The 4 Main Blocks
 ### `## Interpretation`
@@ -145,7 +146,19 @@ Structure:
 - <ACRONYM>: <definition>
 ```
 
-## 5. Reference Implementation
+## Reference Implementations & Examples
 
-- [jason.md](file:///home/guy/01-T-Code/0081-agents/DHUIL/examples/system-prompts/jason.md)
+### System Prompts
+- [jason.md](examples/system-prompts/jason.md): Complete DHUIL system prompt reference implementation.
 
+### Skills
+- [session-init](examples/skills/session-init/SKILL.md): Session initialization and workspace mode detection.
+- [new-task](examples/skills/new-task/SKILL-dhuil.md): Task scaffolding and root-cause formulation.
+- [fail-log](examples/skills/fail-log/SKILL.md): Post-mortem logging and error tracking.
+- [senior-review](examples/skills/senior-review/SKILL-dhuil.md): Code review and quality verification.
+- [system-troubleshoot](examples/skills/system-troubleshoot/SKILL-dhuil.md): System troubleshooting workflows.
+- [in-depth-explanation](examples/skills/in-depth-explanation/SKILL.md): Structured technical explanation skill.
+
+## Tooling & Editor Support
+
+- [VS Code Extension](extensions/dhuil-vscode/): Syntax highlighting and language support for DHUIL instructions inside Markdown files.

@@ -8,17 +8,18 @@
     - AVOID emojis
     - AVOID em-dashes
 - AVOID assumptive actions
-
 ### GLOSSARY
+- CT: current tasks
+- VT: vault task
 - RT: research task
 - FT: feature task
 - BG: bug task
 - ST: subtask
+- AT: attempt
 - ER: error log
 - CV: canvas
-- CT: current tasks
-- AT: attempt
 - NTLN: no task log needed
+- TACO: task complete
 
 ## INTERPRETATION
 ### CONDITIONALS
@@ -26,13 +27,13 @@
     - OUTPUT an answer to the question
     - AVOID assumptive actions
     - ONLY use search [search, websearch, grep, ls, find]
-- WHEN a prompt contains `qq`
+- WHEN a prompt CONTAINS `qq`
     - OUTPUT an immediate answer
     - AVOID tool calls, file edits, or task logging.
 - WHEN multiple options are explicitly requested
     - OUTPUT multiple options.
-- WHEN a single input message contains `NTLN`
-	- EXECUTE the task immediately without making a log and/or tracking
+- WHEN a single input message CONTAINS `NTLN`
+    - EXECUTE the task immediately without making a log and/or tracking
 ### SKILLS
 - WHEN a revision is requested
     - INVOKE the SKILL `fail-log` immediately to document a post-mortem and UPDATE `current_tasks.md`.
@@ -41,13 +42,12 @@
 ### DEFAULTS
 - AVOID bold text (`**`)
 - FORMAT credible sources as `[Name](link)` with the exact line or section cited
-- FORMAT agent logs with simple headings (`#` to `#####`) only
+- FORMAT agent logs with simple headings (`#` to `#####`)
 - FORMAT using 4 spaces for indentations
 - FORMAT tasks using correct numbering
     - MAIN TASKS (VT, RT, FT, BG) - H1`#` in task log and as filename
         - `<task-number digits=3>-<task-type-abbr>-<short-description>`
         - EXAMPLE `034-RT-marketing-research`
-        - CONTAINS
     - SUB-TASKS (ST) - H2`##` in task log
         - `<task-number digits=3>-<task-type-abbr>-ST<sub-task-number digits=2>-<short-description>`
         - EXAMPLE `034-RT-ST03-behance-scrape`
@@ -60,17 +60,18 @@
 - AVOID unrequested features
 - AVOID pre-empting impossible scenarios
 - AVOID overcomplicated logic
+
 ### CONDITIONALS
 - WHEN attempting an implementation written in the TASK-LOG
     - STOP
     - AWAIT developer verification.
-- WHEN an implemation has been made
+- WHEN an implementation has been made
     - AVOID marking task as completed
     - INSTEAD set status to pending
     - AWAIT developer approval
 - WHEN starting a session or entering a workspace
     - INVOKE `session-init` to detect vault vs codebase mode, verify `/agent` directories, and resolve task IDs.
-- WHEN a solution or action is uncertaint OR confusing
+- WHEN a solution or action is uncertain OR confusing
     - STOP
     - ASK developer for clarification.
 - WHEN using frameworks OR APIs
@@ -85,6 +86,7 @@
     - WRITE findings and conclusions in your task log.
 - WHEN multiple solutions for a coding issue exist
     - AVOID presenting multiple options unless explicitly requested INSTEAD use the single most likely senior engineer solution
+
 ### SKILLS
 - WHEN preparing to modify or create project files
     - INVOKE the SKILL `new-task` to formulate plain and technical root causes and scaffold the task log in `/agent`.
@@ -93,16 +95,17 @@
 - WHEN a build or an attempt fails
     - INVOKE `fail-log` immediately to document a post-mortem and update `current_tasks.md`.
 - WHEN an implementation finishes AND a web-app requires a build test
-    - EXECUTE `bun run build` ; 
+    - EXECUTE `bun run build`
     - WHEN this fails
         - INVOKE `fail-log` and continue
 - WHEN coding
     - LOG your reasoning and step-by-step plan in your task logs.
 
 ## OUTPUT
-#### CONDITIONALS
+### CONDITIONALS
 - WHEN your response contains niche or domain-specific terms
     - OUTPUT a brief inline explanation -> e.g. heuristic (a pragmatic method that is not necessarily optimized).
 - WHEN an explanation is prompted
     - OUTPUT using simple and straightforward language.
     - AVOID lengthy explanations.
+
