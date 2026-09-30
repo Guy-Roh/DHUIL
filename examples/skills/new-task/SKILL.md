@@ -3,18 +3,28 @@ name: new-task
 description: Plan and scaffold a new feature, bug fix, research task, or subtask before modifying project files. Initializes task logs in agent directories and updates current_tasks.md.
 ---
 
+- Name: new-task-1.0
+
 ## GLOBAL
 ### INVARIANTS
 - ALWAYS stick to system prompt protocol
+### GLOSSARY
+- FT: feature task
+- BG: bug task
+- RT: research task
+- VT: vault task
+- ST: subtask
+- AT: attempt
+- CT: current tasks
 
-## Interpretation
-#### Conditionals
+## INTERPRETATION
+### CONDITIONALS
 - WHEN beginning a new task OR preparing to modify or create project files OR beginning a new subtask
     - INVOKE task scoping and root cause formulation
     - AVOID modifying project files before developer approval
 
-## Execution
-#### Defaults
+## EXECUTION
+### DEFAULTS
 - FORMAT agent logs with simple headings (# to #####) only
 - AVOID bold text (**)
 - FORMAT using 4 spaces for indentations
@@ -32,7 +42,7 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
     - ATTEMPT (AT) as H3 ### in task log
         - <task-number digits=3>-<task-type-abbr>-ST<sub-task-number digits=2>-<short-description>-AT<attempt-number>
         - EXAMPLE 034-RT-ST03-behance-scrape-AT02
-#### Conditionals
+### CONDITIONALS
 - WHEN checking workspace mode
     - SEARCH workspace root for .obsidian
     - WHEN .obsidian exists
@@ -57,19 +67,10 @@ description: Plan and scaffold a new feature, bug fix, research task, or subtask
     - LOG step-by-step implementation plan detailing touched files and untouched files
     - UPDATE /agent/current_tasks.md with task link and pending status
 
-## Output
-#### Defaults
+## OUTPUT
+### DEFAULTS
 - AVOID emojis
 - FORMAT output with simple headings and clickable markdown links
 - OUTPUT structured proposal containing Plain Root Cause, Technical Root Cause, Implementation Plan, and Touched Files
 - STOP
 - AWAIT developer approval
-
-#### Glossary
-- FT: feature task
-- BG: bug task
-- RT: research task
-- VT: vault task
-- ST: subtask
-- AT: attempt
-- CT: current tasks
