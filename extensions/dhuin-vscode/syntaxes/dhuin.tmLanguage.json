@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-    "name": "DHUIL",
-    "scopeName": "text.html.markdown.dhuil",
+    "name": "DHUIN",
+    "scopeName": "text.html.markdown.dhuin",
     "patterns": [
         {
             "include": "#header-metadata"
@@ -42,10 +42,10 @@
             "match": "^\\s*-\\s+(Name|Codename):\\s*(.*)$",
             "captures": {
                 "1": {
-                    "name": "keyword.other.metadata.dhuil"
+                    "name": "keyword.other.metadata.dhuin"
                 },
                 "2": {
-                    "name": "string.unquoted.metadata.dhuil"
+                    "name": "string.unquoted.metadata.dhuin"
                 }
             }
         },
@@ -56,7 +56,7 @@
                     "name": "punctuation.definition.heading.markdown"
                 },
                 "2": {
-                    "name": "entity.name.section.block-title.dhuil"
+                    "name": "entity.name.section.block-title.dhuin"
                 }
             }
         },
@@ -67,7 +67,7 @@
                     "name": "punctuation.definition.heading.markdown"
                 },
                 "2": {
-                    "name": "entity.name.section.rule-classification.dhuil"
+                    "name": "entity.name.section.rule-classification.dhuin"
                 }
             }
         },
@@ -86,15 +86,15 @@
         },
         "conditionals": {
             "match": "\\b(WHEN|MEANING|CONTAINS|EXISTS|OR|AND|NOT|WITH)\\b",
-            "name": "keyword.control.conditional.dhuil"
+            "name": "keyword.control.conditional.dhuin"
         },
         "actions": {
             "match": "\\b(OUTPUT|INVOKE|UPDATE|STOP|AWAIT|SEARCH|READ|ASK|WRITE|FORMAT|EXECUTE|LOG|VERIFY)\\b",
-            "name": "entity.name.function.action.dhuil"
+            "name": "entity.name.function.action.dhuin"
         },
         "policies": {
             "match": "\\b(AVOID|ONLY|INSTEAD|ALWAYS|PREFER|OVER)\\b",
-            "name": "storage.modifier.policy.dhuil"
+            "name": "storage.modifier.policy.dhuin"
         },
         "headings": {
             "patterns": [

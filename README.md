@@ -9,7 +9,7 @@ Hybrid in the way that it combines structured programming patterns with natural 
 Universal by using model-agnostic declarative keywords
 
 ## Architectural Communication Graph
-DHUIL allows explicit instructions governing each stage of this pipeline:
+DHUIN allows explicit instructions governing each stage of this pipeline:
 1. `GLOBAL`: Universal invariants, defaults, and glossaries
 2. `INTERPRETATION`: interpretation of the input messages
 3. `EXECUTION` (or Workflow)
@@ -155,7 +155,7 @@ Structure:
 ## Reference Implementations & Examples
 
 ### System Prompts
-- [jason.md](examples/system-prompts/jason.md): Complete DHUIL system prompt reference implementation.
+- [jason.md](examples/system-prompts/jason.md): Complete DHUIN system prompt reference implementation.
 
 ### Skills
 - [session-init](examples/skills/session-init/SKILL.md): Session initialization and workspace mode detection.
@@ -167,4 +167,4 @@ Structure:
 
 ## Tooling & Editor Support
 
-- [VS Code Extension](extensions/dhuil-vscode/): Syntax highlighting and language support for DHUIL instructions inside Markdown files.
+- [VS Code Extension](extensions/dhuin-vscode/): Syntax highlighting and language support for DHUIN instructions inside Markdown files.

@@ -1,9 +1,9 @@
 {
-    "name": "dhuil-vscode",
-    "displayName": "DHUIL Language Support",
-    "description": "Syntax highlighting and language support for DHUIL (Declarative Hybrid Universal Instruction Language)",
+    "name": "dhuin-vscode",
+    "displayName": "DHUIN Language Support",
+    "description": "Syntax highlighting and language support for DHUIN (Declarative Hybrid Universal Instruction Language)",
     "version": "0.1.0",
-    "publisher": "dhuil",
+    "publisher": "dhuin",
     "engines": {
         "vscode": "^1.60.0"
     },
@@ -13,26 +13,26 @@
     "contributes": {
         "languages": [
             {
-                "id": "dhuil",
+                "id": "dhuin",
                 "aliases": [
-                    "DHUIL",
-                    "dhuil"
+                    "DHUIN",
+                    "dhuin"
                 ],
                 "configuration": "./language-configuration.json"
             }
         ],
         "grammars": [
             {
-                "language": "dhuil",
-                "scopeName": "text.html.markdown.dhuil",
-                "path": "./syntaxes/dhuil.tmLanguage.json"
+                "language": "dhuin",
+                "scopeName": "text.html.markdown.dhuin",
+                "path": "./syntaxes/dhuin.tmLanguage.json"
             },
             {
-                "scopeName": "markdown.dhuil.injection",
-                "path": "./syntaxes/dhuil.injection.tmLanguage.json",
+                "scopeName": "markdown.dhuin.injection",
+                "path": "./syntaxes/dhuin.injection.tmLanguage.json",
                 "injectTo": [
                     "text.html.markdown",
-                    "text.html.markdown.dhuil"
+                    "text.html.markdown.dhuin"
                 ]
             }
         ],
@@ -40,37 +40,37 @@
             "editor.tokenColorCustomizations": {
                 "textMateRules": [
                     {
-                        "scope": "entity.name.section.block-title.dhuil",
+                        "scope": "entity.name.section.block-title.dhuin",
                         "settings": {
                             "foreground": "#fa8181"
                         }
                     },
                     {
-                        "scope": "entity.name.section.rule-classification.dhuil",
+                        "scope": "entity.name.section.rule-classification.dhuin",
                         "settings": {
                             "foreground": "#ffe1b6"
                         }
                     },
                     {
-                        "scope": "keyword.control.conditional.dhuil",
+                        "scope": "keyword.control.conditional.dhuin",
                         "settings": {
                             "foreground": "#daffbe"
                         }
                     },
                     {
-                        "scope": "entity.name.function.action.dhuil",
+                        "scope": "entity.name.function.action.dhuin",
                         "settings": {
                             "foreground": "#72b1b9"
                         }
                     },
                     {
-                        "scope": "storage.modifier.policy.dhuil",
+                        "scope": "storage.modifier.policy.dhuin",
                         "settings": {
                             "foreground": "#FFAB91"
                         }
                     },
                     {
-                        "scope": "keyword.other.metadata.dhuil",
+                        "scope": "keyword.other.metadata.dhuin",
                         "settings": {
                             "foreground": "#FFE082"
                         }
