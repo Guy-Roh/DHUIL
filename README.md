@@ -2,7 +2,7 @@
 
 ## Overview
 
-DHUIL (Declarative Hybrid Universal Instruction Notation) is a markdown notation method to write agent prompts with clearer structure than pure natural language with minimal token overhead.
+DHUIN (Declarative Hybrid Universal Instruction Notation) is a markdown notation method to write agent prompts with clearer structure than pure natural language with minimal token overhead.
 
 Declarative in the expression of its logic
 Hybrid in the way that it combines structured programming patterns with natural language
